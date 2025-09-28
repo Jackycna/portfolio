@@ -1,0 +1,34 @@
+class AppImages {
+  static const String background = 'assets/images/back_background.jpg';
+  static const String fastapi = 'assets/images/skills/fastapi.png';
+  static const String flutter = 'assets/images/skills/flutter.png';
+  static const String firesbase = 'assets/images/skills/firebase.png';
+  static const String python = 'assets/images/skills/python.png';
+  static const String bird = 'assets/images/profile_bird.png';
+  static const String postgres = 'assets/images/skills/postgres.png';
+  static const String reading = 'assets/images/reading.png';
+  static const String walking = 'assets/images/walking.png';
+  static const String play = 'assets/images/football.png';
+  static const String insta = 'assets/images/instagram.png';
+  static const String email = 'assets/images/email.png';
+  static const String github = 'assets/images/github.png';
+  static const String phone = 'assets/images/phone.png';
+  static const String linkein = 'assets/images/linkedin.png';
+  static const String c = 'assets/images/c.png';
+  static const String cplus = 'assets/images/c++.png';
+  static const String angular = 'assets/images/angular.png';
+  static const String ts = 'assets/images/ts.png';
+  static const String js = 'assets/images/js.png';
+  static const String seashop = 'assets/images/projects/fish_delivery.png';
+  static const String employee = 'assets/images/projects/employee.png';
+  static const String calender = 'assets/images/projects/calender.png';
+  static const String flutterbird = 'assets/images/flutter_bird.jpg';
+  static const String mountain = "assets/images/me/mountain.jpeg";
+  static const String nobackground = "assets/images/me/nobackground.png";
+  static const String ringlight = "assets/images/me/ringlight.jpeg";
+  static const String sqflite = "assets/images/skills/sqflite.jpg";
+  static const String bloc = "assets/images/projects/bloc.png";
+  static const String map = "assets/images/projects/googlemap.png";
+  static const String scanner = "assets/images/projects/scanner.png";
+  static const String working = 'assets/images/me/working.jpeg';
+}
