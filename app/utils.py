@@ -1,10 +1,11 @@
 from passlib.context import CryptContext
 from app.config import settings
 from jose import JWTError,jwt
-from fastapi import status,HTTPException,Depends
+from fastapi import status,HTTPException,Depends,Security
 from datetime import datetime,timedelta
 from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordRequestForm,OAuth2PasswordBearer
+from fastapi.security.api_key import APIKeyHeader
 
 # hashing and verifying password
 
@@ -38,3 +39,15 @@ async def verify_token(token:str,db:Session):
     if not payload:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="Token expired")
     return payload
+
+#  apikey verification
+
+api_key_name="api_auth_key"
+api_key=settings.apikey
+
+api_key_header=APIKeyHeader(name=api_key_name,auto_error=False)
+
+async def get_api_key(api:str=Security(api_key_header)):
+    if api==api_key:
+        return {"authendicated"}
+    raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail="Api key verification Failed")

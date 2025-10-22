@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     algorithm:str
     minutes:str
     secret_key:str
+    apikey:str
     model_config=SettingsConfigDict(env_file=".env",env_file_encoding="utf-8")
 
 settings=Settings()

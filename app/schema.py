@@ -81,6 +81,7 @@ class SkillsBase(BaseModel):
     image:str
     titile:str
     describtion:str
+    confident:bool
     user_id:str
 
 class SkillsCreate(SkillsBase):
@@ -110,21 +111,20 @@ class UserBaseDetails(BaseModel):
     gmail:Optional[str]=None
     phone:Optional[str]=None
 
-
-class UserResponse(UserBase):
+class UserResponse(BaseModel):
     id:UUID
-    workRole:str
-    about:str
-    git_hub:str
-    linked_in:str
-    gmail:str
-    phone:str
+    name:str
+    username:str
+    workRole:Optional[str]=None
+    about:Optional[str]=None
+    git_hub:Optional[str]=None
+    linked_in:Optional[str]=None
+    gmail:Optional[str]=None
+    phone:Optional[str]=None
     created_at:datetime
     skills:List[SkillsResponse]=[]
     project:List[ProjectsResponse]=[]
     messege:List[MessegeResponse]=[]
     expirence:List[ExpirenceResponse]=[]
-    class Config:
-        from_attributes=True
 
     
