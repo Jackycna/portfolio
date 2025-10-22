@@ -2,11 +2,13 @@ from sqlalchemy.orm import Session
 from app import schema,models
 from fastapi import status,HTTPException
 from uuid import UUID
+from app import utils
 
 
 async def create_user(user:schema.UserCreate,db:Session):
     try:
-        new_user=models.User(**user.model_dump())
+        password=await utils.get_hash_password(user.password)
+        new_user=models.User(name=user.name,username=user.username,password=password)
         db.add(new_user)
         db.commit()
         db.refresh(new_user)

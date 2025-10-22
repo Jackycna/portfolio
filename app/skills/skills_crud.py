@@ -4,7 +4,6 @@ from fastapi import HTTPException,status
 from uuid import UUID
 
 
-
 async def create_skill(skill:schema.SkillsCreate,db:Session):
     try:
         new_skill=models.Skills(**skill.model_dump())
@@ -14,6 +13,12 @@ async def create_skill(skill:schema.SkillsCreate,db:Session):
         return new_skill
     except:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="something get wrong")
+    
+async def get_skill(id:UUID,db:Session):
+    try:
+        return db.query(models.Skills).filter(models.Skills.user_id==id).all()
+    except:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="Content not found")
     
 async def delete_skill(id:UUID,db:Session):
     try:

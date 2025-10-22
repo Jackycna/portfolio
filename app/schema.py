@@ -64,7 +64,7 @@ class ProjectsBase(BaseModel):
     titile:str
     describtion:Optional[str]=None
     project_link:Optional[str]=None
-    user_id:str
+    user_id:UUID
 
 class ProjectsCreate(ProjectsBase):
     pass
@@ -82,7 +82,7 @@ class SkillsBase(BaseModel):
     titile:str
     describtion:str
     confident:bool
-    user_id:str
+    user_id:UUID
 
 class SkillsCreate(SkillsBase):
     pass
@@ -126,5 +126,25 @@ class UserResponse(BaseModel):
     project:List[ProjectsResponse]=[]
     messege:List[MessegeResponse]=[]
     expirence:List[ExpirenceResponse]=[]
+
+
+# auth schema
+
+class AuthBase(BaseModel):
+    access_token:str
+    token_type:str
+
+class UserAuth(BaseModel):
+    username:str
+    password:str
+
+class FastApiLogin(AuthBase):
+    pass
+
+class AuthLogin(AuthBase):
+    refresh_token:str
+    class Config:
+        from_attributes=True
+
 
     

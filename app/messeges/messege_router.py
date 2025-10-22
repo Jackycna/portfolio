@@ -8,10 +8,6 @@ from typing import List
 
 router=APIRouter(prefix="/messege",tags=["Messege"],dependencies=[Depends(get_api_key)])
 
-@router.get('/')
-async def Initial():
-    return{"Messege"}
-
 @router.post('/create',response_model=schema.ProjectsResponse)
 async def add_project(messege:schema.ProjectsCreate,db:Session=Depends(database.get_db)):
     return await messege_crud.send_messege(messege=messege,db=db)

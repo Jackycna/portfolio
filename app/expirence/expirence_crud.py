@@ -13,7 +13,14 @@ async def create_expirence(expirence:schema.ExpirenceCreate,db:Session):
         return new_expirence
     except:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="something wrong")
+
+async def get_all(id:UUID,db:Session):
+    try:
+        return db.query(models.Expirence).filter(models.Expirence.user_id==id).all()
+    except:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="Not Found")
     
+     
 async def delete_expirence(id:UUID,db:Session):
     try:
         db.query(models.Projects).filter(models.Projects.id==id).delete()

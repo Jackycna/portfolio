@@ -6,6 +6,7 @@ from datetime import datetime,timedelta
 from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordRequestForm,OAuth2PasswordBearer
 from fastapi.security.api_key import APIKeyHeader
+from app import models
 
 # hashing and verifying password
 
@@ -34,11 +35,18 @@ async def get_jwt_token(user:dict):
     except JWTError as e:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail=str(e))
 
-async def verify_token(token:str,db:Session):
+async def verify_token(token:str):
     payload=jwt.decode(token,settings.secret_key,algorithms=[settings.algorithm])
     if not payload:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="Token expired")
     return payload
+
+oauth=OAuth2PasswordBearer(tokenUrl="auth/login")
+async def get_current_user(token:OAuth2PasswordRequestForm=Depends(oauth)):
+    try:
+        return await verify_token(token=token)
+    except:
+        raise HTTPException(status.HTTP_403_FORBIDDEN)
 
 #  apikey verification
 

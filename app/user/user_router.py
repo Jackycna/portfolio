@@ -9,10 +9,6 @@ from uuid import UUID
 
 router=APIRouter(prefix="/user",tags=["User"],dependencies=[Depends(get_api_key)])
 
-@router.get('/')
-async def Initial():
-    return{"User"}
-
 @router.post("/create",response_model=schema.UserResponse)
 async def create_user(user:schema.UserCreate,db:Session=Depends(database.get_db)):
     return await user_crud.create_user(user=user,db=db)
